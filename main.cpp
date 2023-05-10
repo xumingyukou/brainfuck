@@ -63,7 +63,6 @@ Program Parser(std::vector<Token> tokens) {
         case READ:
         case WRITE: {
             ASTNode* astNode = new ASTNode(EXPRESSIONSTATEMENT, token.tk, nullptr);
-            std::printf("EXPRESSIONSTATEMENT: %d\n", token.tk);
             (*currentNode).push_back(astNode);
             break;
         }
@@ -75,8 +74,10 @@ Program Parser(std::vector<Token> tokens) {
             ASTNode* node = new ASTNode;
             node->type = LOOPSTATEMENT;
             node->val = LOOPBEGIN;
+            node->body = new Body;
             (*currentNode).push_back(node);
             nodeStack.push_back(currentNode);
+            currentNode = &(node->body->nodes);
         }
 
         if(token.tk == LOOPEND) {
@@ -90,9 +91,9 @@ Program Parser(std::vector<Token> tokens) {
 
 int main() {
 
-    // std::string TEST = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+    std::string TEST = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
 
-    std::string TEST = "++++++++++.>.";
+    //std::string TEST = "[>+++++++>++++++++++>+++>+<<<<-]";
 
     std::vector<Token> tokens = lexer(TEST);
     // for(auto& token: tokens) {
