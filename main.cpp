@@ -2,50 +2,51 @@
 #include "ASTNode.h"
 #include "Token.h"
 #include "Program.h"
+#include "Lexer.h"
 #include<vector>
 #include<string>
 
-std::vector<Token> lexer(std::string code) {
-    std::vector<Token> tokens;
-    int current = 0;
-    int totalLen = code.size();
+// std::vector<Token> lexer(std::string code) {
+//     std::vector<Token> tokens;
+//     int current = 0;
+//     int totalLen = code.size();
 
-    while (current < totalLen)
-    {
-        const char op = code[current++];
+//     while (current < totalLen)
+//     {
+//         const char op = code[current++];
 
-        switch(op) {
-        case '+':
-            tokens.push_back(Token(ADD, op));
-            break;
-        case '-':
-            tokens.push_back(Token(SUB, op));
-            break;
-        case '>':
-            tokens.push_back(Token(MOVERIGHT, op));
-            break;
-        case '<':
-            tokens.push_back(Token(MOVELEFT, op));
-            break;
-        case '.':
-            tokens.push_back(Token(READ, op));
-            break;   
-        case ',':
-            tokens.push_back(Token(WRITE, op));
-            break;
-        case '[':
-            tokens.push_back(Token(LOOPBEGIN, op));
-            break;
-        case ']':
-            tokens.push_back(Token(LOOPEND, op));
-            break;
-        default:
-            break;
-        }
-    }
+//         switch(op) {
+//         case '+':
+//             tokens.push_back(Token(ADD, op));
+//             break;
+//         case '-':
+//             tokens.push_back(Token(SUB, op));
+//             break;
+//         case '>':
+//             tokens.push_back(Token(MOVERIGHT, op));
+//             break;
+//         case '<':
+//             tokens.push_back(Token(MOVELEFT, op));
+//             break;
+//         case '.':
+//             tokens.push_back(Token(READ, op));
+//             break;   
+//         case ',':
+//             tokens.push_back(Token(WRITE, op));
+//             break;
+//         case '[':
+//             tokens.push_back(Token(LOOPBEGIN, op));
+//             break;
+//         case ']':
+//             tokens.push_back(Token(LOOPEND, op));
+//             break;
+//         default:
+//             break;
+//         }
+//     }
     
-    return tokens;
-}
+//     return tokens;
+// }
 
 Program Parser(std::vector<Token> tokens) {
     Program* program = new Program;
@@ -95,11 +96,21 @@ int main() {
 
     //std::string TEST = "[>+++++++>++++++++++>+++>+<<<<-]";
 
-    std::vector<Token> tokens = lexer(TEST);
-    // for(auto& token: tokens) {
-    //     printf("{Token | Type: %d, Val: %c}\n", token.tk, token.val);
-    // }
+    // std::vector<Token> tokens = lexer(TEST);
+    // // for(auto& token: tokens) {
+    // //     printf("{Token | Type: %d, Val: %c}\n", token.tk, token.val);
+    // // }
 
-    Program program = Parser(tokens);
-    program.show();
+    // Program program = Parser(tokens);
+    // program.show();
+
+    Lexer lx = Lexer(TEST);
+    Token token = lx.next();
+
+    while (token.tk != Eof)
+    {
+        std::cout << token;
+        token = lx.next();
+    }
+    
 }
