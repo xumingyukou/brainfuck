@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Token.h"
 #include<string>
 
@@ -7,6 +9,7 @@ public:
     int         current;
     std::string code;
 
+    Lexer(){}
     Lexer(std::string str) {
         this->current = 0;
         this->code = str;

@@ -14,17 +14,17 @@ enum TokenKind {
     Eof = 8
 };
 
-const std::string const TokenKindArr[] = {
-    "MOVERIGHT",
-    "MOVELEFT",
-    "ADD",
-    "SUB",
-    "READ",
-    "WRITE",
-    "LOOPBEGIN",
-    "LOOPEND",
-    "Eof"
-};
+// const std::string const TokenKindArr[] = {
+//     "MOVERIGHT",
+//     "MOVELEFT",
+//     "ADD",
+//     "SUB",
+//     "READ",
+//     "WRITE",
+//     "LOOPBEGIN",
+//     "LOOPEND",
+//     "Eof"
+// };
 
 enum ASTNodeType {
     EXPRESSIONSTATEMENT,

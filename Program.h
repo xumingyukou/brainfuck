@@ -8,6 +8,9 @@ public:
     Program() {
         this->body = new Body;
     }
+    Program(Body* body) {
+        this->body = body;
+    }
     
     void show() {
         this->body->show();

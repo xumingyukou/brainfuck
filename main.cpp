@@ -3,6 +3,7 @@
 #include "Token.h"
 #include "Program.h"
 #include "Lexer.h"
+#include "Parser.h"
 #include<vector>
 #include<string>
 
@@ -48,47 +49,47 @@
 //     return tokens;
 // }
 
-Program Parser(std::vector<Token> tokens) {
-    Program* program = new Program;
+// Program Parser(std::vector<Token> tokens) {
+//     Program* program = new Program;
 
-    std::vector<std::vector<ASTNode*>*> nodeStack;  // 保存上一层的body->nodes
-    std::vector<ASTNode*>* currentNode = &(program->body->nodes);
+//     std::vector<std::vector<ASTNode*>*> nodeStack;  // 保存上一层的body->nodes
+//     std::vector<ASTNode*>* currentNode = &(program->body->nodes);
 
     
-    for(auto& token: tokens) {
-        switch(token.tk) {
-        case MOVERIGHT:
-        case MOVELEFT:
-        case ADD:
-        case SUB:
-        case READ:
-        case WRITE: {
-            ASTNode* astNode = new ASTNode(EXPRESSIONSTATEMENT, token.tk, nullptr);
-            (*currentNode).push_back(astNode);
-            break;
-        }
-        default:
-            break;
-        }
+//     for(auto& token: tokens) {
+//         switch(token.tk) {
+//         case MOVERIGHT:
+//         case MOVELEFT:
+//         case ADD:
+//         case SUB:
+//         case READ:
+//         case WRITE: {
+//             ASTNode* astNode = new ASTNode(EXPRESSIONSTATEMENT, token.tk, nullptr);
+//             (*currentNode).push_back(astNode);
+//             break;
+//         }
+//         default:
+//             break;
+//         }
 
-        if(token.tk == LOOPBEGIN) {
-            ASTNode* node = new ASTNode;
-            node->type = LOOPSTATEMENT;
-            node->val = LOOPBEGIN;
-            node->body = new Body;
-            (*currentNode).push_back(node);
-            nodeStack.push_back(currentNode);
-            currentNode = &(node->body->nodes);
-        }
+//         if(token.tk == LOOPBEGIN) {
+//             ASTNode* node = new ASTNode;
+//             node->type = LOOPSTATEMENT;
+//             node->val = LOOPBEGIN;
+//             node->body = new Body;
+//             (*currentNode).push_back(node);
+//             nodeStack.push_back(currentNode);
+//             currentNode = &(node->body->nodes);
+//         }
 
-        if(token.tk == LOOPEND) {
-            currentNode = nodeStack.back();
-            nodeStack.pop_back();
-        }
-    }
+//         if(token.tk == LOOPEND) {
+//             currentNode = nodeStack.back();
+//             nodeStack.pop_back();
+//         }
+//     }
 
-    return *program;
-}
+//     return *program;
+// }
 
 int main() {
 
@@ -104,13 +105,7 @@ int main() {
     // Program program = Parser(tokens);
     // program.show();
 
-    Lexer lx = Lexer(TEST);
-    Token token = lx.next();
-
-    while (token.tk != Eof)
-    {
-        std::cout << token;
-        token = lx.next();
-    }
-    
+    Parser ps = Parser(Lexer(TEST));
+    Program ast = ps.program();
+    ast.show();
 }
