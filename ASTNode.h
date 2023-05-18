@@ -1,6 +1,7 @@
 #pragma once
 #include "header.h"
 #include<stdio.h>
+#include<iostream>
 
 class Body;
 
@@ -14,4 +15,6 @@ public:
     ASTNode(ASTNodeType type, TokenKind val, Body* body): type(type), val(val), body(body){};
 
     void show();
+    void eval(EvalContext& ctx);
+
 };

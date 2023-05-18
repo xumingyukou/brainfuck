@@ -93,9 +93,9 @@
 
 int main() {
 
-    std::string TEST = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+    // std::string TEST = "++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++.>+.+++++++..+++.<<++.>+++++++++++++++.>.+++.------.--------.<<+.<.";
 
-    //std::string TEST = "[>+++++++>++++++++++>+++>+<<<<-]";
+    std::string TEST = "++++++++[>+++++++++<-]>.";
 
     // std::vector<Token> tokens = lexer(TEST);
     // // for(auto& token: tokens) {
@@ -107,5 +107,7 @@ int main() {
 
     Parser ps = Parser(Lexer(TEST));
     Program ast = ps.program();
-    ast.show();
+    // ast.show();
+    EvalContext ctx; ctx.Array.push_back(0);
+    ast.eval(ctx);
 }

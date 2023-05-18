@@ -1,6 +1,7 @@
 #pragma once
 
 #include<string>
+#include<vector>
 
 enum TokenKind {
     MOVERIGHT = 0,
@@ -30,3 +31,22 @@ enum ASTNodeType {
     EXPRESSIONSTATEMENT,
     LOOPSTATEMENT
 };
+
+class EvalContext {
+public:
+    std::vector<int> Array;
+    int index;
+
+    EvalContext() {
+        Array.push_back(0);
+        this->index = 0;
+    }
+};
+
+// void showArray111(EvalContext& ctx) {
+//     printf("{size = %d, index = %d, [", int(ctx.Array.size()), ctx.index);
+//     for(auto& i: ctx.Array) {
+//         printf("%d ", i);
+//     }
+//     printf("]\n");
+// }

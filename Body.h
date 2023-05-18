@@ -11,4 +11,10 @@ public:
             node->show();
         }
     }
+
+    void eval(EvalContext& ctx) {
+        for(auto node: this->nodes) {
+            (*node).eval(ctx);
+        }
+    }
 };

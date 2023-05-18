@@ -15,4 +15,8 @@ public:
     void show() {
         this->body->show();
     }
+
+    void eval(EvalContext& ctx) {
+        this->body->eval(ctx);
+    }
 };

@@ -12,6 +12,7 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const Token& tk) {
         os << "Token(ty=<TokenKind." << tk.tk << ">, val = " << tk.val << ")" << std::endl;
+        return os;
     }
 };
 
