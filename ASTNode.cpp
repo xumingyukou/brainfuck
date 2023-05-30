@@ -107,6 +107,7 @@ void ASTNode::gen(std::vector<Ir>& buf) {
         buf.push_back(Ir(IrOpCode::IfEnough, 0));
         int j = buf.size();
         buf.push_back(Ir(IrOpCode::BrFalse, 0));
+        buf[i].val = buf.size();
         this->body->gen(buf);
         buf.push_back(Ir(IrOpCode::JUMP, i));
         buf[j].val = buf.size();

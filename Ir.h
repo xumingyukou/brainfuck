@@ -14,3 +14,5 @@ public:
     //     return os;
     // }
 };
+
+void ir_eval(std::vector<Ir>& buf, EvalContext& ctx);

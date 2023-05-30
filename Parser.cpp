@@ -8,14 +8,14 @@ Program Parser::program() {
 
         Token token = lx.next();
     
-        while (token.tk != Eof) {
+        while (token.tk != TokenKind::Eof) {
             switch(token.tk) {
-            case MOVERIGHT:
-            case MOVELEFT:
-            case ADD:
-            case SUB:
-            case READ:
-            case WRITE: {
+            case TokenKind::MOVERIGHT:
+            case TokenKind::MOVELEFT:
+            case TokenKind::ADD:
+            case TokenKind::SUB:
+            case TokenKind::READ:
+            case TokenKind::WRITE: {
                 ASTNode* astNode = new ASTNode(EXPRESSIONSTATEMENT, token.tk, nullptr);
                 (*currentNode).push_back(astNode);
                 break;
@@ -24,17 +24,17 @@ Program Parser::program() {
                 break;
             }
 
-            if(token.tk == LOOPBEGIN) {
+            if(token.tk == TokenKind::LOOPBEGIN) {
                 ASTNode* node = new ASTNode;
                 node->type = LOOPSTATEMENT;
-                node->val = LOOPBEGIN;
+                node->val = TokenKind::LOOPBEGIN;
                 node->body = new Body;
                 (*currentNode).push_back(node);
                 nodeStack.push_back(currentNode);
                 currentNode = &(node->body->nodes);
             }
 
-            if(token.tk == LOOPEND) {
+            if(token.tk == TokenKind::LOOPEND) {
                 currentNode = nodeStack.back();
                 nodeStack.pop_back();
             }

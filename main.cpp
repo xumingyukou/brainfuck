@@ -4,6 +4,7 @@
 #include "Program.h"
 #include "Lexer.h"
 #include "Parser.h"
+#include "Ir.h"
 #include<vector>
 #include<string>
 
@@ -93,9 +94,9 @@
 
 int main() {
 
-    // std::string TEST = "++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++.>+.+++++++..+++.<<++.>+++++++++++++++.>.+++.------.--------.<<+.<.";
+    std::string TEST = "++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++.>+.+++++++..+++.<<++.>+++++++++++++++.>.+++.------.--------.<<+.<.";
 
-    std::string TEST = "++++++++[>+++++++++<-]>.";
+    // std::string TEST = "++++++++[>+++++++++<-]>.";
 
     // std::vector<Token> tokens = lexer(TEST);
     // // for(auto& token: tokens) {
@@ -108,7 +109,7 @@ int main() {
     Parser ps = Parser(Lexer(TEST));
     Program ast = ps.program();
     // ast.show();
-    // EvalContext ctx; ctx.Array.push_back(0);
+    EvalContext ctx; ctx.Array.push_back(0);
     // ast.eval(ctx);
 
     std::vector<Ir> buf;
@@ -116,4 +117,6 @@ int main() {
     for(int i = 0; i < buf.size(); i++) {
         std::cout << i << " " << "Ir(op=<IrOpCode." << buf[i].op << ">, val = " << buf[i].val << ")" << std::endl;
     }
+
+    ir_eval(buf, ctx);
 }
