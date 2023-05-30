@@ -6,3 +6,6 @@ ASTNode.o: ASTNode.cpp
 
 Parser.o: Parser.cpp
 	g++ Parser.cpp -c Parser.o
+
+clean:
+	rm main

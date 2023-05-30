@@ -108,6 +108,12 @@ int main() {
     Parser ps = Parser(Lexer(TEST));
     Program ast = ps.program();
     // ast.show();
-    EvalContext ctx; ctx.Array.push_back(0);
-    ast.eval(ctx);
+    // EvalContext ctx; ctx.Array.push_back(0);
+    // ast.eval(ctx);
+
+    std::vector<Ir> buf;
+    ast.gen(buf);
+    for(int i = 0; i < buf.size(); i++) {
+        std::cout << i << " " << "Ir(op=<IrOpCode." << buf[i].op << ">, val = " << buf[i].val << ")" << std::endl;
+    }
 }

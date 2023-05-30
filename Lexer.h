@@ -17,35 +17,35 @@ public:
 
     Token next() {
         if(current == code.size()) {
-            return Token(Eof, ' ');
+            return Token(TokenKind::Eof, ' ');
         }
         const char op = code[current++];
 
         switch (op)
         {
         case '+':
-            return Token(ADD, op);
+            return Token(TokenKind::ADD, op);
             break;
         case '-':
-            return Token(SUB, op);
+            return Token(TokenKind::SUB, op);
             break;
         case '>':
-            return Token(MOVERIGHT, op);
+            return Token(TokenKind::MOVERIGHT, op);
             break;
         case '<':
-            return Token(MOVELEFT, op);
+            return Token(TokenKind::MOVELEFT, op);
             break;
         case '.':
-            return Token(READ, op);
+            return Token(TokenKind::READ, op);
             break;
         case ',':
-            return Token(WRITE, op);
+            return Token(TokenKind::WRITE, op);
             break;
         case '[':
-            return Token(LOOPBEGIN, op);
+            return Token(TokenKind::LOOPBEGIN, op);
             break;
         case ']':
-            return Token(LOOPEND, op);
+            return Token(TokenKind::LOOPEND, op);
             break;
         default:
             break;

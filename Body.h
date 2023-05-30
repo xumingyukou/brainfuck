@@ -1,5 +1,6 @@
 #pragma once
 #include "ASTNode.h"
+#include "Ir.h"
 #include<vector>
 
 class Body {
@@ -15,6 +16,12 @@ public:
     void eval(EvalContext& ctx) {
         for(auto node: this->nodes) {
             (*node).eval(ctx);
+        }
+    }
+
+    void gen(std::vector<Ir>& buf) {
+        for(auto node: this->nodes) {
+            (*node).gen(buf);
         }
     }
 };

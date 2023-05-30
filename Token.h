@@ -5,10 +5,10 @@
 
 class Token {
 public:
-    TokenKind tk;
+    TokenKind::Type tk;
     char val;
 
-    Token(TokenKind tk, char val): tk(tk), val(val){}
+    Token(TokenKind::Type tk, char val): tk(tk), val(val){}
 
     friend std::ostream& operator<<(std::ostream& os, const Token& tk) {
         os << "Token(ty=<TokenKind." << tk.tk << ">, val = " << tk.val << ")" << std::endl;

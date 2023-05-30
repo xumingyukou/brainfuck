@@ -3,7 +3,8 @@
 #include<string>
 #include<vector>
 
-enum TokenKind {
+namespace TokenKind {
+    enum Type {
     MOVERIGHT = 0,
     MOVELEFT = 1,
     ADD = 2,
@@ -13,7 +14,9 @@ enum TokenKind {
     LOOPBEGIN = 6,
     LOOPEND = 7,
     Eof = 8
-};
+    };
+}
+
 
 // const std::string const TokenKindArr[] = {
 //     "MOVERIGHT",
@@ -50,3 +53,18 @@ public:
 //     }
 //     printf("]\n");
 // }
+
+namespace IrOpCode {
+    enum Type {
+    MOVERIGHT = 0,
+    MOVELEFT = 1,
+    ADD = 2,
+    SUB = 3,
+    READ = 4,
+    WRITE = 5,
+    IfEnough = 6,
+    JUMP = 7,
+    BrFalse = 8,
+    Halt = 9
+    };
+}
