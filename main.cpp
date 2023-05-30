@@ -110,13 +110,13 @@ int main() {
     Program ast = ps.program();
     // ast.show();
     EvalContext ctx; ctx.Array.push_back(0);
-    // ast.eval(ctx);
+    ast.eval(ctx);
 
-    std::vector<Ir> buf;
-    ast.gen(buf);
-    for(int i = 0; i < buf.size(); i++) {
-        std::cout << i << " " << "Ir(op=<IrOpCode." << buf[i].op << ">, val = " << buf[i].val << ")" << std::endl;
-    }
+    // std::vector<Ir> buf;
+    // ast.gen(buf);
+    // for(int i = 0; i < buf.size(); i++) {
+    //     std::cout << i << " " << "Ir(op=<IrOpCode." << buf[i].op << ">, val = " << buf[i].val << ")" << std::endl;
+    // }
 
-    ir_eval(buf, ctx);
+    // ir_eval(buf, ctx);
 }

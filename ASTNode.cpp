@@ -15,7 +15,7 @@ void ASTNode::eval(EvalContext& ctx) {
         if(this->type == EXPRESSIONSTATEMENT) {
             
             if(this->val == TokenKind::MOVERIGHT) {
-                if(ctx.index == ctx.Array.size()) {
+                if(ctx.index == ctx.Array.size() - 1) {
                     ctx.Array.push_back(0);
                     ctx.index++;
                 } else {
@@ -58,11 +58,11 @@ void ASTNode::eval(EvalContext& ctx) {
                 scanf("%d", &ctx.Array[ctx.index]);
             }
 
-            printf("{size = %d, index = %d, [", int(ctx.Array.size()), ctx.index);
-            for(auto& i: ctx.Array) {
-                printf("%d ", i);
-            }
-            printf("]}\n");
+            // printf("{size = %d, index = %d, [", int(ctx.Array.size()), ctx.index);
+            // for(auto& i: ctx.Array) {
+            //     printf("%d ", i);
+            // }
+            // printf("]}\n");
         }
         
         else {

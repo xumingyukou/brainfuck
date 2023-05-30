@@ -31,7 +31,7 @@ void ir_eval(std::vector<Ir>& buf, EvalContext& ctx) {
             break;
 
         case IrOpCode::MOVERIGHT:
-            if(ctx.index == ctx.Array.size()) {
+            if(ctx.index == ctx.Array.size() - 1) {
                     ctx.Array.push_back(0);
                     ctx.index++;
                 } else {
